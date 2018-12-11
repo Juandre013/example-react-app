@@ -8,6 +8,12 @@ export const FETCH_VALUES = "FETCH_VALUES";
 export const SAVE_VALUES_TO_SERVER = "SAVE_VALUES_TO_SERVER";
 export const STORE_VALUES = "STORE_VALUES";
 
+
+export interface MyAction extends Action {
+    currency: CurrencyData;
+    values: ValuesData;
+}
+
 export interface AppStoreState {
   currency: CurrencyData;
   values: ValuesData;
@@ -39,6 +45,18 @@ export const initialState: AppStoreState = {
   }
 };
 
-export function reducer(state: AppStoreState, action: Action) {
-  return state;
+export function reducer(state: AppStoreState, action: MyAction) {
+
+    switch (action.type) {
+        case FETCH_EXCHANGE_RATES:
+            return Object.assign({}, state, {currency: action.currency});
+        case FETCH_VALUES:
+            return Object.assign({}, state, {values: action.values});
+        case STORE_VALUES:
+            return Object.assign({}, state, {values: action.values});
+        default:
+            return initialState;
+    }
+
+  return initialState;
 }

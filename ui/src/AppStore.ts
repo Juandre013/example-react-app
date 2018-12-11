@@ -1,5 +1,6 @@
-import {createStore} from "redux";
-import {initialState, reducer} from "./AppActions";
+import {createStore,compose, applyMiddleware} from "redux";
+import { reducer} from "./AppActions";
+import thunk from "redux-thunk";
 
 declare global {
   interface Window {
@@ -7,8 +8,10 @@ declare global {
   }
 }
 
+const middleware = [thunk];
+
 export const appStore = createStore(
   reducer,
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  compose(applyMiddleware(...middleware))
 );

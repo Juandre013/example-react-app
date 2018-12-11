@@ -1,7 +1,16 @@
 import * as React from 'react';
+import { CurrencyData } from './Models';
 
-export class ExchangeRates extends React.Component {
-  public render() {
+interface ExchangeRatesProps {
+  getExchangeRates: () => Promise<CurrencyData>;
+  currency: CurrencyData;
+}
+
+export class ExchangeRates extends React.Component<ExchangeRatesProps> {
+
+
+    public render() {
+        const exchangeRates = this.props.currency.exchangeRates;
     return (
       <div>
         <table>
@@ -17,19 +26,19 @@ export class ExchangeRates extends React.Component {
           <tr>
             <td>USD</td>
             <td />
-            <td>0</td>
-            <td>0</td>
+            <td>{exchangeRates.USD.GBP}</td>
+            <td>{exchangeRates.USD.EUR}</td>
           </tr>
           <tr>
             <td>GBP</td>
-            <td>0</td>
+            <td>{exchangeRates.GBP.USD}</td>
             <td />
-            <td>0</td>
+            <td>{exchangeRates.GBP.EUR}</td>
           </tr>
           <tr>
             <td>EUR</td>
-            <td>0</td>
-            <td>0</td>
+            <td>{exchangeRates.EUR.USD}</td>
+            <td>{exchangeRates.EUR.GBP}</td>
             <td />
           </tr>
           </tbody>
@@ -37,4 +46,7 @@ export class ExchangeRates extends React.Component {
       </div>
     );
   }
+public componentDidMount() {
+        this.props.getExchangeRates();
+    }
 }

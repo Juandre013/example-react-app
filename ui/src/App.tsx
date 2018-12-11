@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './App.css';
 import {appStore} from "./AppStore";
-import {ExchangeRates} from "./ExchangeRates";
 import {Provider} from "react-redux";
-import {SelectedValuesForm} from "./SelectedValuesForm";
+import { ExchangeRatesContainer } from "./ExchangeRatesContainer";
+import {SelectedValuesContainer} from "./SelectedValuesContainer";
 
 export class App extends React.Component {
   public render() {
@@ -14,8 +14,8 @@ export class App extends React.Component {
             <h1>Example</h1>
           </header>
           <div>
-            <ExchangeRates/>
-            <SelectedValuesForm/>
+            <ExchangeRatesContainer/>
+            <SelectedValuesContainer/>
           </div>
         </div>
       </Provider>
