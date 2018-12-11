@@ -24,7 +24,7 @@ namespace example_react_app.Controllers
             return storedValues;
         }
 
-        [HttpPost("")]
+        [HttpPost]
         public bool SetValues([FromBody] StoredValues values)
         {
             storedValues = values;
